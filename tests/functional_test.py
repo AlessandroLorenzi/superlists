@@ -13,3 +13,6 @@ class NewVisitorTest(unittest.TestCase):
         self.browser.get("http://localhost:8000")
 
         self.assertIn("Congratulations", self.browser.title)
+
+if __name__ == "__main__":
+    unittest.main()
