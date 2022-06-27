@@ -21,3 +21,12 @@ class SmokeTest(TestCase):
         self.assertIn('<html lang="en">', html)
         self.assertIn("<title>To-Do lists</title>", html)
         self.assertTrue(html.endswith("</html>\n"))
+
+    def test_use_case_get(self):
+        self.client.get("/")
+        self.assertTemplateUsed("lists/home.html")
+
+    def test_can_save_a_post_request(self):
+        response = self.client.post("/", data={"item_text": "A new list item"})
+        self.assertIn("A new list item", response.content.decode("utf8"))
+        self.assertTemplateUsed("lists/home.html")
